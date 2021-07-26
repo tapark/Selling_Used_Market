@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:color="@color/black"
+        android:state_checked="true"/> <!--버튼(아이템)을 눌렀을때-->
+
+    <item
+        android:color="@color/gray"
+        android:state_checked="false"/> <!--누르지 않았을때-->
+</selector>

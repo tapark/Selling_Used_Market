@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "364245305547",
+    "firebase_url": "https://selling-used-market-default-rtdb.firebaseio.com",
+    "project_id": "selling-used-market",
+    "storage_bucket": "selling-used-market.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364245305547:android:12b70d8e7b101b6fcd734e",
+        "android_client_info": {
+          "package_name": "com.example.selling_used_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364245305547-b34ffdj8f6l86r2oei5kmekbj7q95k2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL2YT-r3sKou6MDIrvNlfX9MYTw1fv0Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364245305547-b34ffdj8f6l86r2oei5kmekbj7q95k2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,2 @@
+rootProject.name = "selling_used_market"
+include ':app'
