@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.selling_used_market.databinding.ItemArticleBinding
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -36,7 +38,7 @@ class ArticleAdapter(val onItemClicked: (ArticleModel) -> Unit): ListAdapter<Art
 
             if (articleModel.imageUrl.isNotEmpty()) {
                 Glide.with(binding.thumbnailImageView)
-                    .load(articleModel.imageUrl)
+                    .load(articleModel.imageUrl).transform(CenterCrop(), RoundedCorners(20))
                     .into(binding.thumbnailImageView)
             }
 
