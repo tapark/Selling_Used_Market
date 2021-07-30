@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/priceEditText"
         android:hint="가격을 입력해주세요."
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

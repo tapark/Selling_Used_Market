@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.AddArticleActivity"></activity>
+        <activity android:name=".chat_detail.ChatroomActivity"></activity>
     </application>
 
 </manifest>

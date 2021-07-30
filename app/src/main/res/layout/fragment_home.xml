@@ -48,6 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:stateListAnimator="@null"
+        app:borderWidth="0dp"
         android:src="@drawable/ic_baseline_add_24"
         android:backgroundTint="@color/orange"
         app:tint='@color/white'

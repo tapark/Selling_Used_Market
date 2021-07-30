@@ -24,7 +24,7 @@ import com.google.firebase.storage.ktx.storage
 class AddArticleActivity: AppCompatActivity() {
 
     private val itemImageView: ImageView by lazy {
-        findViewById<ImageButton>(R.id.itemImageView)
+        findViewById<ImageView>(R.id.itemImageView)
     }
     private val upLoadImageButton: Button by lazy {
         findViewById(R.id.uploadImageButton)
@@ -91,11 +91,6 @@ class AddArticleActivity: AppCompatActivity() {
             } else {
                 uploadArticle(sellerId, title, price, "")
             }
-
-            val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "{$price}원", "")
-            articleDB.push().setValue(model)
-
-            finish()
         }
     }
 
@@ -119,7 +114,7 @@ class AddArticleActivity: AppCompatActivity() {
     }
 
     private fun uploadArticle(sellerId: String, title: String, price: String, imageUrl: String) {
-        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "{$price}원", imageUrl)
+        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "${price}원", imageUrl)
         articleDB.push().setValue(model)
 
         hideProgress()

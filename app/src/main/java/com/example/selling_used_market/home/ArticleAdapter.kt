@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.selling_used_market.databinding.ItemArticleBinding
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.zip.Inflater
 
-class ArticleAdapter: ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diffUtil) {
+class ArticleAdapter(val onItemClicked: (ArticleModel) -> Unit): ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemArticleBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -20,15 +21,27 @@ class ArticleAdapter: ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diffU
 
             val format = SimpleDateFormat("MM월 dd일")
             val date = Date(articleModel.createAt)
+            var decimalPrice: String = ""
 
-           binding.titleTextView.text = articleModel.title
+            for (i in articleModel.price.indices) {
+                if (i > 3 && i % 3 == 1) {
+                    decimalPrice += ','
+                }
+                decimalPrice += articleModel.price.reversed()[i]
+            }
+
+            binding.titleTextView.text = articleModel.title
             binding.timeTextView.text = format.format(date).toString()
-            binding.priceTextView.text = articleModel.price
+            binding.priceTextView.text = decimalPrice.reversed()
 
             if (articleModel.imageUrl.isNotEmpty()) {
                 Glide.with(binding.thumbnailImageView)
                     .load(articleModel.imageUrl)
                     .into(binding.thumbnailImageView)
+            }
+
+            binding.root.setOnClickListener {
+                onItemClicked(articleModel)
             }
         }
 
