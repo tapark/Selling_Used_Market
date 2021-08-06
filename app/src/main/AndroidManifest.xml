@@ -19,8 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.AddArticleActivity"></activity>
-        <activity android:name=".chat_detail.ChatroomActivity"></activity>
+        <activity android:name=".home.AddArticleActivity" />
+        <activity
+            android:name=".chat_detail.ChatroomActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

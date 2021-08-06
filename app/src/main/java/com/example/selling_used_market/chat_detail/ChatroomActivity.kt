@@ -1,10 +1,12 @@
 package com.example.selling_used_market.chat_detail
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.selling_used_market.R
 import com.example.selling_used_market.databinding.ActivityRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -14,7 +16,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.example.selling_used_market.chat_detail.ChatRoomAdapter
 
 class ChatroomActivity: AppCompatActivity() {
 
@@ -37,8 +38,14 @@ class ChatroomActivity: AppCompatActivity() {
         auth = Firebase.auth
         chatRoomAdapter = ChatRoomAdapter()
 
-        binding.chatRecyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.stackFromEnd
+
+        binding.chatRecyclerView.layoutManager = layoutManager
         binding.chatRecyclerView.adapter = chatRoomAdapter
+
+        keyboardResizeRecyclerView()
+
 
         val chatKey = intent.getLongExtra("chatKey", -1)
         val title = intent.getStringExtra("title")
@@ -53,6 +60,7 @@ class ChatroomActivity: AppCompatActivity() {
                 chatList.add(chatModel)
                 chatRoomAdapter.submitList(chatList)
                 chatRoomAdapter.notifyDataSetChanged()
+                binding.chatRecyclerView.smoothScrollToPosition(binding.chatRecyclerView.adapter!!.itemCount - 1)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -79,4 +87,29 @@ class ChatroomActivity: AppCompatActivity() {
         }
 
     }
+
+    private fun keyboardResizeRecyclerView() {
+
+        binding.chatRoomLayout.viewTreeObserver.addOnGlobalLayoutListener {
+            val screenHeight = binding.chatRoomLayout.rootView.height
+            val changedScreenHeight = binding.chatRoomLayout.height
+            val diff = screenHeight - changedScreenHeight
+                if (diff > dpToPx(this, 200f)) {
+                    binding.chatRecyclerView.smoothScrollToPosition(binding.chatRecyclerView.adapter!!.itemCount - 1)
+                }
+            }
+        }
+
+    private fun dpToPx(context: Context, dp: Float): Float {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
+    }
+
+    private fun View.setHeight(value: Int) {
+        val lp = layoutParams
+        lp?.let {
+            lp.height = value
+            layoutParams = lp
+        }
+    }
+
 }
